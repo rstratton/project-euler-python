@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+# Description: Creates a Python solution stub
+
+
+SOLUTIONS_DIR="projecteuler/solutions"
+SOLUTION_FNAME="${SOLUTIONS_DIR}/s${1}.py"
+
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: ${0} problem_number"
+    exit 1
+fi
+if [[ ! -d "$SOLUTIONS_DIR" ]]; then
+    echo "Error: Couldn't find directory '$(pwd)/${SOLUTIONS_DIR}'."
+    exit 1
+fi
+if [[ -e "${SOLUTION_FNAME}" ]]; then
+    echo "Error: ${SOLUTION_FNAME} already exists."
+    exit 1
+fi
+
+cat > "$SOLUTION_FNAME" << EOF
+#!/usr/bin/env python3
+
+"""
+PROBLEM:
+"""
+
+
+def solve():
+    pass
+
+
+if __name__ == "__main__":
+    print(solve())
+EOF
+
+chmod 744 "$SOLUTION_FNAME"
