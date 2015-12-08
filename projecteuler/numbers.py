@@ -1,6 +1,3 @@
-# TODO: modify this class so that any means of accessing it will automatically
-# extend it if needed (e.g. the iterator returned by __iter__ should
-# keep generating new primes if a limit isn't specified)
 class _Primes(object):
 
     def __init__(self):
