@@ -6,7 +6,7 @@ all the primes below two million.
 """
 
 
-from projecteuler.numbers import primes
+from projecteuler.util import primes
 from itertools import takewhile
 
 

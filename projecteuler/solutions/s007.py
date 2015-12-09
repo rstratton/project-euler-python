@@ -6,7 +6,7 @@ see that the 6th prime is 13.  What is the 10 001st prime number?
 """
 
 
-from projecteuler.numbers import primes
+from projecteuler.util import primes
 
 def solve():
     return primes[10000]

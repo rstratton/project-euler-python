@@ -7,7 +7,7 @@ is evenly divisible by all of the numbers from 1 to 20?
 """
 
 
-from projecteuler.numbers import prime_factors
+from projecteuler.util import prime_factors
 from collections import Counter
 
 

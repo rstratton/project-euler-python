@@ -5,7 +5,7 @@ PROBLEM: What is the largest prime factor of the number 600851475143?
 """
 
 
-from projecteuler.numbers import prime_factors
+from projecteuler.util import prime_factors
 
 
 def solve():
