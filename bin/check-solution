@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+# Description: Execute solution script and compare result against answer
+
+
+SOLUTIONS_DIR="projecteuler/solutions"
+ANSWERS_DIR="projecteuler/answers"
+ANSWER_FNAME="${ANSWERS_DIR}/${1}.txt"
+SOLUTION_FNAME="${SOLUTIONS_DIR}/s${1}.py"
+SOLUTION_MNAME="projecteuler.solutions.s${1}"
+
+
+if [[ $# -ne 1 ]]; then
+    echo "Usage: ${0} problem_number"
+    exit 1
+fi
+if [[ ! -e "${SOLUTION_FNAME}" ]]; then
+    echo "Error: ${SOLUTION_FNAME} doesn't exist."
+    exit 1
+fi
+if [[ ! -e "${ANSWER_FNAME}" ]]; then
+    echo "Error: ${ANSWER_FNAME} doesn't exist."
+    exit 1
+fi
+
+diff <(python3 -m ${SOLUTION_MNAME}) "${ANSWER_FNAME}"
