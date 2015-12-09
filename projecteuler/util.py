@@ -1,3 +1,8 @@
+from itertools import chain
+from itertools import combinations
+from functools import reduce
+from operator import mul
+
 class _Primes(object):
 
     def __init__(self):
@@ -80,3 +85,17 @@ def prime_factors(n):
             break
     factors.extend(prime_factors(n / p))
     return factors
+
+
+def powerset(iterable):
+    """
+    Taken from: https://docs.python.org/3.1/library/itertools.html
+    """
+    s = list(iterable)
+    return chain.from_iterable(combinations(s, r) for r in range(len(s) + 1))
+
+def product(iterable):
+    """
+    Return the multiplicative product of a sequence of numbers.
+    """
+    return reduce(mul, iterable, 1)
