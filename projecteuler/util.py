@@ -94,8 +94,16 @@ def powerset(iterable):
     s = list(iterable)
     return chain.from_iterable(combinations(s, r) for r in range(len(s) + 1))
 
+
 def product(iterable):
     """
     Return the multiplicative product of a sequence of numbers.
     """
     return reduce(mul, iterable, 1)
+
+
+def divisors(n):
+    """
+    Return a set of all the divisors of n (including 1 and n).
+    """
+    return set(product(factors) for factors in powerset(prime_factors(n)))
