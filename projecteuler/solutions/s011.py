@@ -7,8 +7,7 @@ below)?
 """
 
 
-from operator import mul
-from functools import reduce
+from projecteuler.util import product
 
 
 GRID_STR = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
@@ -44,7 +43,7 @@ def h_prod(i, j):
     if j > 16:
         return -1
     else:
-        return reduce(mul, [GRID[i][j+k] for k in range(4)])
+        return product(GRID[i][j+k] for k in range(4))
 
 def v_prod(i, j):
     """
@@ -55,7 +54,7 @@ def v_prod(i, j):
     if i > 16:
         return -1
     else:
-        return reduce(mul, [GRID[i+k][j] for k in range(4)])
+        return product(GRID[i+k][j] for k in range(4))
 
 def dr_prod(i, j):
     """
@@ -66,7 +65,7 @@ def dr_prod(i, j):
     if j > 16 or i > 16:
         return -1
     else:
-        return reduce(mul, [GRID[i+k][j+k] for k in range(4)])
+        return product(GRID[i+k][j+k] for k in range(4))
 
 def dl_prod(i, j):
     """
@@ -77,7 +76,7 @@ def dl_prod(i, j):
     if j < 3 or i > 16:
         return -1
     else:
-        return reduce(mul, [GRID[i+k][j-k] for k in range(4)])
+        return product(GRID[i+k][j-k] for k in range(4))
 
 def max_product(i, j):
     """
