@@ -2,6 +2,7 @@ from itertools import chain
 from itertools import combinations
 from functools import reduce
 from operator import mul
+import functools
 
 class _Primes(object):
 
@@ -107,3 +108,17 @@ def divisors(n):
     Return a set of all the divisors of n (including 1 and n).
     """
     return set(product(factors) for factors in powerset(prime_factors(n)))
+
+
+def memoize(obj):
+    """
+    Taken from: https://wiki.python.org/moin/PythonDecoratorLibrary
+    """
+    cache = obj.cache = {}
+    @functools.wraps(obj)
+    def memoizer(*args, **kwargs):
+        key = str(args) + str(kwargs)
+        if key not in cache:
+            cache[key] = obj(*args, **kwargs)
+        return cache[key]
+    return memoizer
