@@ -1,1 +1,1 @@
-Error: projecteuler/solutions/s011.py already exists.
+70600674
