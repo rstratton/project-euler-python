@@ -122,3 +122,11 @@ def memoize(obj):
             cache[key] = obj(*args, **kwargs)
         return cache[key]
     return memoizer
+
+
+def flatten(list_of_lists):
+    """
+    Taken from: https://docs.python.org/3.1/library/itertools.html
+    Flatten one level of nesting in a list of lists
+    """
+    return chain.from_iterable(list_of_lists)
