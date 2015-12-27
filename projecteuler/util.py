@@ -21,6 +21,10 @@ class _Primes(object):
         self.primes_set.update(sieve.primes)
         self.limit = new_limit
 
+    def preload(self, n):
+        while n >= self.limit:
+            self._expand()
+
     def __contains__(self, n):
         while n >= self.limit:
             self._expand()
@@ -73,18 +77,32 @@ primes = _Primes()
 
 
 def prime_factors(n):
-    """
-    Return a list containing the prime factors of 'n'
+    primes.preload(n)
+    factors = []
+    while n != 0 and n != 1:
+        if n in primes.primes_set:
+            factors.append(n)
+            break
+        for p in primes.primes_list:
+            if n % p == 0:
+                factors.append(p)
+                n = n // p
+                break
+    return factors
 
+
+def prime_factors_large_n(n):
+    """
+    Return the prime factors of a large number (this implementation doesn't
+    require generating all primes less than or equal to 'n', but it's slower).
     """
     factors = []
-    if n in [0, 1]:
-        return []
-    for p in primes:
-        if n % p == 0:
-            factors.append(p)
-            break
-    factors.extend(prime_factors(n / p))
+    while n != 0 and n != 1:
+        for p in primes:
+            if n % p == 0:
+                factors.append(p)
+                n = n // p
+                break
     return factors
 
 
