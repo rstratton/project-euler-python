@@ -93,8 +93,10 @@ def prime_factors(n):
 
 def prime_factors_large_n(n):
     """
-    Return the prime factors of a large number (this implementation doesn't
-    require generating all primes less than or equal to 'n', but it's slower).
+    Return the prime factors of a large number.  This implementation doesn't
+    require generating all primes less than or equal to 'n', but it's slower for
+    small 'n' where generating all primes less than or equal to 'n' isn't too
+    time-intensive.
     """
     factors = []
     while n != 0 and n != 1:
@@ -126,6 +128,15 @@ def divisors(n):
     Return a set of all the divisors of n (including 1 and n).
     """
     return set(product(factors) for factors in powerset(prime_factors(n)))
+
+def divisors_large_n(n):
+    """
+    Return a set of all the divisors of n (including 1 and n).  This
+    implementation doesn't require generating all primes less than or equal to
+    'n', but it's slower for small 'n' where generating all primes less than or
+    equal to 'n' isn't too time-intensive.
+    """
+    return set(product(factors) for factors in powerset(prime_factors_large_n(n)))
 
 
 def memoize(obj):
