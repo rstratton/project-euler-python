@@ -22,23 +22,20 @@ is the value of the first triangle number to have over five hundred divisors?
 """
 
 
-from projecteuler.util import divisors
-from projecteuler.util import prime_factors
+from projecteuler.util import prime_factors_large_n
+from projecteuler.util import product
+from collections import Counter
 from itertools import count
 
 
-def tri_nums():
-    """
-    Yield the sequence of triangle numbers starting with 1
-    """
-    current_num = 0
-    for n in count(1):
-        current_num += n
-        yield current_num
+def num_divisors(n):
+    p_factors = Counter(prime_factors_large_n(n))
+    p_factors.update(p_factors.keys())  # Add '1' to every Counter entry
+    return product(p_factors.values())
 
 def solve():
-    for tri_num in tri_nums():
-        if len(divisors(tri_num)) > 500:
+    for tri_num in (n * (n + 1) // 2 for n in count(1)):
+        if num_divisors(tri_num) > 500:
             return tri_num
 
 
